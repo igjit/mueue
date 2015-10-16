@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'config'
+gem 'google-api-client', '0.8.6'
 
 group :test do
   gem 'shoulda-matchers'
