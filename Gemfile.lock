@@ -48,8 +48,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    config (1.0.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.0)
     database_cleaner (1.5.0)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -172,6 +176,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
+  config
   database_cleaner
   factory_girl_rails
   hirb
