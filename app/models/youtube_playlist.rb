@@ -15,4 +15,9 @@ class YoutubePlaylist < ActiveRecord::Base
     end
     self.youtube_playlist_youtube_videos = playlist_videos
   end
+
+  def watch_url
+    video_id = youtube_playlist_youtube_videos.find_by(list_index: 1).youtube_video.resource_id
+    "https://www.youtube.com/watch?v=#{video_id}&list=#{resource_id}"
+  end
 end
