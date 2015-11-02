@@ -4,4 +4,8 @@ class YoutubeVideo < ActiveRecord::Base
   has_many :youtube_playlists, through: :youtube_playlist_youtube_video
 
   validates :resource_id, presence: true, uniqueness: true
+
+  def watch_url
+    "https://www.youtube.com/watch?v=#{resource_id}"
+  end
 end
