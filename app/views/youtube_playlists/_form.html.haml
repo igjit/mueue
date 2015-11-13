@@ -1,0 +1,13 @@
+= form_for @location, url: youtube_playlists_path, method: :post do |f|
+  - if @location.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@location.errors.count, "error")} prohibited this youtube from being saved:"
+      %ul
+        - @location.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :url
+    = f.text_field :url
+  .actions
+    = f.submit 'Add'

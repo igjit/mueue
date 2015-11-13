@@ -1,0 +1,20 @@
+%h1 Playlists
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Channel
+      %th
+      %th
+
+  %tbody
+    - @playlists.each do |playlist|
+      %tr
+        %td= link_to playlist.title, playlist.watch_url
+        %td= playlist.youtube_channel.title
+        %td= link_to 'Destroy', playlist, data: {confirm: 'Are you sure?'}, method: :delete
+
+%br
+
+= link_to 'New Playlist', new_youtube_playlist_path
