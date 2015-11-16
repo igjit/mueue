@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :youtube_playlists, only: [:index, :new, :create, :destroy]
 
+  get '/player', to: 'player#show'
   namespace :player do
     resource :state, only: [:show, :update]
   end

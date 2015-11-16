@@ -1,0 +1,15 @@
+%h1 Player
+
+%h2 Now Playing
+- if @video
+  %div= image_tag @video.thumbnail_url, alt: @video.title
+  %div= @video.title
+  %div
+    in playlist
+    = link_to @playlist.title, @playlist.watch_url
+- else
+  (stopped)
+
+%h2 Control
+= link_to 'play', player_state_path(format: :json, state: { play_state: 'play' }), method: :put, remote: true, class: 'btn btn-default'
+= link_to 'stop', player_state_path(format: :json, state: { play_state: 'stop' }), method: :put, remote: true, class: 'btn btn-default'
