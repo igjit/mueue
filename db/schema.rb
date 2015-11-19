@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926053644) do
+ActiveRecord::Schema.define(version: 20151119122426) do
+
+  create_table "player_states", force: :cascade do |t|
+    t.integer  "youtube_playlist_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "player_states", ["youtube_playlist_id"], name: "index_player_states_on_youtube_playlist_id"
 
   create_table "youtube_channels", force: :cascade do |t|
     t.string   "resource_id",              null: false
