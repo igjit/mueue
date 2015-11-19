@@ -53,6 +53,9 @@ class VLCPlayer
     case state.to_sym
     when :play
       @vlc.play
+      # FIXME
+      sleep 0.5
+      @vlc.play
     when :stop
       @vlc.stop
     else
