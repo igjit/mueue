@@ -31,8 +31,10 @@ class VLCPlayer
   end
 
   def track
-    if @playlist_id && @vlc.playing?
-      YoutubePlaylist.find(@playlist_id).youtube_videos.with_index.find_by(title: @vlc.title).list_index
+    title = @vlc.title
+    if title.present?
+      index = @vlc.playlist_raw.grep(/^\|\s{3}\d+\s-\s/).find_index { |x| x.index title }
+      index ? (index + 1) : nil
     end
   end
 
