@@ -1,6 +1,5 @@
 class VLCPlayer
-
-  attr_reader :playlist_id
+  PLAYER_STATE_ID = 1
 
   def self.current
     @current ||= VLCPlayer.new
@@ -13,17 +12,22 @@ class VLCPlayer
   def initialize
     @vlc = VLC::Client.new(Settings.vlc_player.host, Settings.vlc_player.port)
     @vlc.connect
+    PlayerState.find_or_create_by(id: PLAYER_STATE_ID)
     loop_on
-    @playlist_id = nil
+  end
+
+  def playlist_id
+    PlayerState.find(PLAYER_STATE_ID).youtube_playlist_id
   end
 
   def playlist_id=(playlist_id)
     playlist = YoutubePlaylist.find(playlist_id)
-    @playlist_id = playlist_id
 
     @vlc.clear
     videos = playlist.youtube_videos.ordered
     videos.each { |x| @vlc.add_to_playlist(x.watch_url) }
+
+    PlayerState.find(PLAYER_STATE_ID).update! youtube_playlist_id: playlist_id
   end
 
   def track
