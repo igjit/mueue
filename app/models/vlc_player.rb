@@ -14,6 +14,7 @@ class VLCPlayer
     @vlc.connect
     PlayerState.find_or_create_by(id: PLAYER_STATE_ID)
     loop_on
+    self.playlist_id = playlist_id if playlist_id && play_state == :stop
   end
 
   def playlist_id
