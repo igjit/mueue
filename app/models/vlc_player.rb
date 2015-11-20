@@ -39,12 +39,13 @@ class VLCPlayer
   end
 
   def state
-    { play_state: play_state, playlist_id: playlist_id, track: track }.compact
+    { play_state: play_state, playlist_id: playlist_id, track: track, volume: volume }.compact
   end
 
   def state=(state)
     self.playlist_id = state[:playlist_id].to_i if state[:playlist_id]
     self.play_state = state[:play_state] if state[:play_state]
+    self.volume = state[:volume].to_i if state[:volume]
   end
 
   def play_state
@@ -67,6 +68,15 @@ class VLCPlayer
     else
       fail "unknown state: #{state}"
     end
+  end
+
+  def volume
+    @vlc.volume
+  end
+
+  def volume=(volume)
+    fail unless 0 <= volume && volume < 256
+    @vlc.volume = volume
   end
 
   private
