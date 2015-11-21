@@ -2,6 +2,7 @@ module Player
   class StatesController < ApplicationController
     def show
       state = player.state
+      @volume = state[:volume]
       if state[:playlist_id] && state[:track]
         @playlist = YoutubePlaylist.find(state[:playlist_id])
         @video = @playlist.youtube_videos.ordered[state[:track] - 1]

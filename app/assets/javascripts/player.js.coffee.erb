@@ -1,0 +1,9 @@
+<% self.class.include Rails.application.routes.url_helpers %>
+
+$ ->
+  $('.js-player-volume').change ->
+    vol = $(@).val()
+    $.ajax
+      url: '<%= player_state_path(format: :json) %>',
+      type: 'PUT',
+      data: { state: { volume: vol } }
