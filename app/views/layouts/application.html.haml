@@ -16,10 +16,10 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to 'mueue', '#', class: 'navbar-brand'
+          = link_to 'mueue', root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li= link_to 'Playlists', '#'
-            %li= link_to 'Player', '#'
+            %li= link_to 'Playlists', youtube_playlists_path
+            %li= link_to 'Player',  player_state_path
     .container
       = yield
