@@ -1,6 +1,6 @@
 <% self.class.include Rails.application.routes.url_helpers %>
 
-$ ->
+$(document).on 'ready page:load', ->
   $('.js-player-volume').change ->
     vol = $(@).val()
     $.ajax
