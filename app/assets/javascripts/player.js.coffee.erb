@@ -32,3 +32,9 @@ $(document).on 'ready page:load', ->
       showNotification('Stop')
     .on 'ajax:error', (event, xhr, status, error) ->
       showNotification(error)
+
+  $('.js-play-playlist')
+    .on 'ajax:success', ->
+      showNotification('Play')
+    .on 'ajax:error', (event, xhr, status, error) ->
+      showNotification(error)
