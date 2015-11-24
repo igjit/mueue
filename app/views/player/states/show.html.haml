@@ -11,7 +11,7 @@
   (stopped)
 
 %h2 Control
-= link_to 'play', player_state_path(format: :json, state: { play_state: 'play' }), method: :put, remote: true, class: 'btn btn-default'
-= link_to 'stop', player_state_path(format: :json, state: { play_state: 'stop' }), method: :put, remote: true, class: 'btn btn-default'
+= link_to 'play', player_state_path(format: :json, state: { play_state: 'play' }), method: :put, remote: true, class: 'btn btn-default js-player-play'
+= link_to 'stop', player_state_path(format: :json, state: { play_state: 'stop' }), method: :put, remote: true, class: 'btn btn-default js-player-stop'
 
 = range_field_tag 'player-volume', @volume, min: 0, max: 255, class: 'js-player-volume'

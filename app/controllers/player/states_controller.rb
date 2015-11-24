@@ -17,7 +17,7 @@ module Player
     def update
       player.state = state_params
       respond_to do |format|
-        format.json { head :no_content }
+        format.json { render json: { state: player.state } }
       end
     end
 

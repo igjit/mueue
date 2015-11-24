@@ -15,3 +15,20 @@ $(document).on 'ready page:load', ->
       url: '<%= player_state_path(format: :json) %>',
       type: 'PUT',
       data: { state: { volume: vol } }
+      success: (data) ->
+        currentVol = Math.round(data.state.volume / 255 * 100)
+        showNotification("Volume #{currentVol}%")
+      error: (xhr, status, error) ->
+        showNotification(error)
+
+  $('.js-player-play')
+    .on 'ajax:success', ->
+      showNotification('Play')
+    .on 'ajax:error', (event, xhr, status, error) ->
+      showNotification(error)
+
+  $('.js-player-stop')
+    .on 'ajax:success', ->
+      showNotification('Stop')
+    .on 'ajax:error', (event, xhr, status, error) ->
+      showNotification(error)
