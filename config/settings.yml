@@ -1,0 +1,6 @@
+google:
+  developer_key: YOUR_DEVELOPER_KEY
+vlc_player:
+  host: localhost
+  port: 4536
+  auto_start: false
