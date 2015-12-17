@@ -1,5 +1,6 @@
 class VLCPlayer
   PLAYER_STATE_ID = 1
+  CONTROLS = %i(next previous)
 
   def self.current
     @current ||= VLCPlayer.new
@@ -47,6 +48,7 @@ class VLCPlayer
     self.playlist_id = state[:playlist_id].to_i if state[:playlist_id]
     self.play_state = state[:play_state] if state[:play_state]
     self.volume = state[:volume].to_i if state[:volume]
+    control(state[:control]) if state[:control]
   end
 
   def play_state
@@ -78,6 +80,11 @@ class VLCPlayer
   def volume=(volume)
     fail unless 0 <= volume && volume < 256
     @vlc.volume = volume
+  end
+
+  def control(control)
+    fail ArgumentError, "unknown control: #{control}" unless CONTROLS.include? control.to_sym
+    @vlc.send control
   end
 
   private
