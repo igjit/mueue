@@ -14,6 +14,8 @@
 %div
   = link_to 'play', player_state_path(format: :json, state: { play_state: 'play' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
   = link_to 'stop', player_state_path(format: :json, state: { play_state: 'stop' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
+  = link_to '<', player_state_path(format: :json, state: { control: 'previous' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
+  = link_to '>', player_state_path(format: :json, state: { control: 'next' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
 
 %div
   %label volume

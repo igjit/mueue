@@ -24,7 +24,7 @@ module Player
     private
 
     def state_params
-      params.require(:state).permit(:play_state, :playlist_id, :track, :volume)
+      params.require(:state).permit(:play_state, :playlist_id, :track, :volume, :control)
     end
 
     def player
