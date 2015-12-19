@@ -21,20 +21,8 @@ $(document).on 'ready page:load', ->
       error: (xhr, status, error) ->
         showNotification(error)
 
-  $('.js-player-play')
+  $('.js-player-state')
     .on 'ajax:success', ->
-      showNotification('Play')
-    .on 'ajax:error', (event, xhr, status, error) ->
-      showNotification(error)
-
-  $('.js-player-stop')
-    .on 'ajax:success', ->
-      showNotification('Stop')
-    .on 'ajax:error', (event, xhr, status, error) ->
-      showNotification(error)
-
-  $('.js-play-playlist')
-    .on 'ajax:success', ->
-      showNotification('Play')
+      showNotification($(@).text())
     .on 'ajax:error', (event, xhr, status, error) ->
       showNotification(error)
