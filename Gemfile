@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'config'
 gem 'google-api-client', '0.8.6'
 gem 'vlc-client'
+gem 'rufus-scheduler', '~> 3.2'
 
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.3.5'
