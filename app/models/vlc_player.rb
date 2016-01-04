@@ -1,6 +1,7 @@
 class VLCPlayer
   PLAYER_STATE_ID = 1
   CONTROLS = %i(next previous)
+  VLC_POLLING_INTERVAL = 10
 
   def self.current
     @current ||= VLCPlayer.new
@@ -16,6 +17,7 @@ class VLCPlayer
     PlayerState.find_or_create_by(id: PLAYER_STATE_ID)
     loop_on
     self.playlist_id = playlist_id if playlist_id && play_state == :stop
+    start_poll if need_poll?
   end
 
   def playlist_id
@@ -91,5 +93,33 @@ class VLCPlayer
 
   def loop_on
     @vlc.connection.write 'loop on'
+  end
+
+  def need_poll?
+    Settings.slack.webhook_url.present?
+  end
+
+  def start_poll
+    @prev_title = nil
+    scheduler = Rufus::Scheduler.new
+    @job = scheduler.repeat "#{VLC_POLLING_INTERVAL}s", overlap: false do
+      current_title = @vlc.title
+      if current_title.present? && current_title !~ %r{^https?://} && current_title != @prev_title
+        Rails.logger.debug "Title changed: '#{@prev_title}' => '#{current_title}'"
+        notify_to_slack
+        @prev_title = current_title
+      end
+    end
+  end
+
+  def notify_to_slack
+    url = Settings.slack.webhook_url
+    if url
+      playlist = YoutubePlaylist.find(playlist_id)
+      video = playlist.youtube_videos.ordered[state[:track] - 1]
+      text = "<#{video.watch_url}|#{video.title}> in <#{playlist.watch_url}|#{playlist.title}>"
+
+      SlackNotificationJob.perform_later url, username: 'Now Playing', icon_emoji: ':musical_note:', text: text, unfurl_media: false
+    end
   end
 end

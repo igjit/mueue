@@ -4,3 +4,5 @@ vlc_player:
   host: localhost
   port: 4536
   auto_start: false
+slack:
+  webhook_url:
