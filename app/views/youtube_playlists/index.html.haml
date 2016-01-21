@@ -13,7 +13,7 @@
       %tr
         %td= link_to playlist.title, playlist.watch_url
         %td= playlist.youtube_channel.title
-        %td= link_to 'play', player_state_path(format: :json, state: { play_state: 'play', playlist_id: playlist.id }), method: :put, remote: true, class: 'js-player-state'
+        %td= link_to 'Play', player_state_path(format: :json, state: { play_state: 'play', playlist_id: playlist.id }), method: :put, remote: true, class: 'js-player-state'
         %td= link_to 'Destroy', playlist, data: {confirm: 'Are you sure?'}, method: :delete
 
 %br

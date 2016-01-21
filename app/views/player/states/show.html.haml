@@ -12,11 +12,11 @@
 
 %h2 Control
 %div
-  = link_to 'play', player_state_path(format: :json, state: { play_state: 'play' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
-  = link_to 'stop', player_state_path(format: :json, state: { play_state: 'stop' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
+  = link_to 'Play', player_state_path(format: :json, state: { play_state: 'play' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
+  = link_to 'Stop', player_state_path(format: :json, state: { play_state: 'stop' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
   = link_to '<', player_state_path(format: :json, state: { control: 'previous' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
   = link_to '>', player_state_path(format: :json, state: { control: 'next' }), method: :put, remote: true, class: 'btn btn-default js-player-state'
 
 %div
-  %label volume
+  %label Volume
   = range_field_tag 'player-volume', @volume, min: 0, max: 255, class: 'js-player-volume'
