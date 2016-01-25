@@ -1,5 +1,5 @@
 google:
-  developer_key: YOUR_DEVELOPER_KEY
+  api_key: YOUR_API_KEY
 vlc_player:
   host: localhost
   port: 4536

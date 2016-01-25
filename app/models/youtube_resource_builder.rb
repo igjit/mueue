@@ -5,7 +5,7 @@ class YoutubeResourceBuilder
   YOUTUBE_API_VERSION = 'v3'
 
   def initialize
-    @client = Google::APIClient.new key: Settings.google.developer_key, authorization: nil
+    @client = Google::APIClient.new key: Settings.google.api_key, authorization: nil
     @youtube = @client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
   end
 
