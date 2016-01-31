@@ -2,7 +2,7 @@ class YoutubePlaylistsController < ApplicationController
   before_action :set_playlist, only: [:destroy]
 
   def index
-    @playlists = YoutubePlaylist.all.includes(:youtube_channel)
+    @playlists = YoutubePlaylist.all.includes(:youtube_channel).page(params[:page])
   end
 
   def new
