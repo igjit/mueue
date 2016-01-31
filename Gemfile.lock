@@ -124,6 +124,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.2)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     little-plugger (1.1.4)
@@ -255,6 +258,7 @@ DEPENDENCIES
   hirb-unicode
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   rails (= 4.2.4)
   rspec-rails
   rufus-scheduler (~> 3.2)
