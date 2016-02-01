@@ -5,9 +5,8 @@
       %ul
         - @location.errors.full_messages.each do |message|
           %li= message
-
-  .field
+  .field.form-group
     = f.label :url
-    = f.text_field :url
+    = f.text_field :url, class: 'form-control'
   .actions
-    = f.submit 'Add'
+    = f.submit 'Add', class: 'btn btn-default'
