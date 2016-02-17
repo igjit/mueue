@@ -2,7 +2,9 @@ class YoutubePlaylistsController < ApplicationController
   before_action :set_playlist, only: [:destroy]
 
   def index
-    @playlists = YoutubePlaylist.all.includes(:youtube_channel).page(params[:page])
+    @search = YoutubePlaylist.ransack search_params
+    @search.sorts = 'updated_at desc' if @search.sorts.empty?
+    @playlists = @search.result.includes(:youtube_channel).page(params[:page])
   end
 
   def new
@@ -28,5 +30,9 @@ class YoutubePlaylistsController < ApplicationController
 
   def set_playlist
     @playlist = YoutubePlaylist.find(params[:id])
+  end
+
+  def search_params
+    params.require(:q).permit(:s) if params.key? :q
   end
 end
