@@ -21,8 +21,8 @@
         %td= image_tag playlist.thumbnail_url, width: 80
         %td= playlist.youtube_channel.title
         %td= playlist.updated_at.to_date
-        %td= link_to 'Play', player_state_path(format: :json, state: { play_state: 'play', playlist_id: playlist.id }), method: :put, remote: true, class: 'js-player-state'
-        %td= link_to 'Destroy', playlist, data: {confirm: 'Are you sure?'}, method: :delete
+        %td= link_to 'Play', player_state_path(format: :json, state: { play_state: 'play', playlist_id: playlist.id }), method: :put, remote: true, class: 'btn btn-primary js-player-state'
+        %td= link_to 'Destroy', playlist, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-warning'
 
 = link_to 'New Playlist', new_youtube_playlist_path, class: 'btn btn-default'
 
