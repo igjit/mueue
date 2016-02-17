@@ -1,4 +1,8 @@
 %h1 Playlists
+= search_form_for @search do |f|
+  .form-group.form-inline
+    = f.search_field :title_cont, class: 'form-control', placeholder: 'Title'
+    = f.submit class: 'btn btn-default'
 
 %table.table.table-hover
   %thead

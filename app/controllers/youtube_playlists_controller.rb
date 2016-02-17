@@ -33,6 +33,6 @@ class YoutubePlaylistsController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:s) if params.key? :q
+    params.require(:q).permit(:s, :title_cont) if params.key? :q
   end
 end
